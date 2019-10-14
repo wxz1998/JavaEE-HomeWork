@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!-- 将指定类配置给spring,让spring创建其对象的实例-->
+    <!-- 自动扫描controller层 -->
+    <context:component-scan base-package="com.wxz.*"/>
+
+    <bean id="car1" class="com.wxz.entity.Cars" p:brand="宝马" p:color="红色"
+          p:displacement="1L"/>
+    <bean id="car2" class="com.wxz.entity.Cars" p:brand="奔驰" p:color="蓝色"
+          p:displacement="2L"/>
+    <bean id="car3" class="com.wxz.entity.Cars" p:brand="奥迪" p:color="黄色"
+          p:displacement="3L"/>
+
+    <bean id="boss1" class="com.wxz.entity.Boss" p:name="大雄"
+          p:company="大雄公司" p:hobby="洗澡" p:cars-ref="car1"/>
+    <bean id="boss2" class="com.wxz.entity.Boss" p:name="胖虎"
+          p:company="胖虎公司" p:hobby="跑步" p:cars-ref="car2"/>
+    <bean id="boss3" class="com.wxz.entity.Boss" p:name="静香"
+          p:company="静香公司" p:hobby="吃饭" p:cars-ref="car3"/>
+
+    <bean id="meeting" class="com.wxz.entity.Meeting">
+        <property name="theme">
+            <value>"梦回童话主题"</value>
+        </property>
+
+        <property name="list">
+            <list>
+                <ref bean="boss1"/>
+                <ref bean="boss2"/>
+                <ref bean="boss3"/>
+            </list>
+        </property>
+    </bean>
+
+    <!-- <bean id="timingTask" class="com.examSystem.task.TimingTask"/> -->
+</beans>
